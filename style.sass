@@ -1,0 +1,125 @@
+$header-height: 400px
+$drawerColor: #4b6187 
+
+body
+  margin: 0
+  background: #f4f7f4
+  font-family: 'Quattrocento Sans', sans-serif
+  
+a
+  text-decoration: none
+  
+=link($color, $showUnderline)
+  color: $color
+  
+  &:hover
+    color: lighten($color, 10)
+    @if $showUnderline
+      text-decoration: underline
+    
+  &:active
+    color: darken($color, 20)
+
+#navbar
+  position: fixed
+  left: -50vw
+  height: 100vh
+  width: 50vw
+  padding-right: 0
+  transition: left .75s ease-in-out
+  background: $drawerColor
+  font-family: 'Noto Sans', sans-serif
+  
+  &.opened
+    left: 0
+  
+  header
+    text-align: center
+    height: $header-height
+    padding-top: 16px
+    color: #e6bf38
+    
+    #site-title
+      font-size: 1.75rem
+      font-weight: bold
+    
+    a
+      +link(lightgray, false)
+      font-size: 0.75rem
+  
+#navigation-links
+  position: absolute
+  top: $header-height / 4
+  left: 0
+  right: 1vh
+  bottom: 1vh
+  overflow-y: auto
+  padding: 0 1vw
+    
+  .nav-link
+    display: block
+    margin: 3px 0
+    padding: 6px
+    box-sizing: border-box
+    +link(#f4f7f4, true)
+    
+    &:first-child
+      margin-top: 0
+    &:last-child
+      margin-bottom: 0
+  
+#menu-drawer
+  $button-size: 40px
+  position: absolute
+  top: 0
+  right: -$button-size
+  height: $button-size
+  width: $button-size
+  background: $drawerColor
+  border: none
+  color: white
+  font-size: 1.5em
+  border-bottom-right-radius: 5px
+  
+#main-doc .main-section:first-child
+  padding-top: 50px
+  margin-top: 0
+
+.main-section
+  margin: 1.5em
+  
+  header
+    margin-top: 1.5em
+    font-size: 2em
+
+    &:first-child
+      margin-top: 0
+    
+  a
+    +link(#f7845d, false)
+    font-weight: bold
+    
+code
+  white-space: pre-wrap
+    
+@media only screen AND (min-width: 600px)
+  $navigation-width: 30vw
+  #navbar
+    transition: none
+    left: 0
+    width: $navigation-width
+  #menu-drawer
+    display: none
+  #main-doc
+    margin-left: $navigation-width
+    
+    .main-section:first-child
+      padding-top: 1em
+      margin-top: 0
+
+@media only screen AND (min-width: 1200px)
+  $navigation-width: 300px
+  #navbar
+    width: $navigation-width
+  #main-doc
+    margin-left: $navigation-width
